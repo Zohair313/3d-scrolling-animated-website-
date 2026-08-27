@@ -7,6 +7,9 @@
 /.next/
 /out/
 
+# github pages build output
+/out
+
 # production
 /build
 
@@ -26,3 +29,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+node_modules

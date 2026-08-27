@@ -22,7 +22,7 @@ export default function CarScrollCanvas() {
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
       const paddedIndex = i.toString().padStart(3, "0");
-      img.src = `/images/car/frame_${paddedIndex}.jpg`;
+      img.src = `images/car/frame_${paddedIndex}.jpg`;
       
       img.onload = () => {
         loadedCount++;
