@@ -17,8 +17,8 @@ export default function CarScrollCanvas() {
   useEffect(() => {
     let loadedCount = 0;
     const imgArray: HTMLImageElement[] = [];
+    const minFramesToLoad = Math.min(5, frameCount); // Unblock loader after 5 frames
 
-    // Assuming images are at /images/car/frame_001.webp to frame_060.webp
     for (let i = 1; i <= frameCount; i++) {
       const img = new Image();
       const paddedIndex = i.toString().padStart(3, "0");
@@ -27,16 +27,15 @@ export default function CarScrollCanvas() {
       img.onload = () => {
         loadedCount++;
         setLoaded(loadedCount);
-        if (loadedCount === frameCount) {
-          setIsPreloaded(true);
+        if (loadedCount === minFramesToLoad) {
+          setIsPreloaded(true); // Hide loader early
         }
       };
       
-      // In case of error (e.g., missing images), we still want to progress
       img.onerror = () => {
         loadedCount++;
         setLoaded(loadedCount);
-        if (loadedCount === frameCount) {
+        if (loadedCount === minFramesToLoad) {
           setIsPreloaded(true);
         }
       };
